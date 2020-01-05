@@ -17,6 +17,7 @@ public class Test_NewsDaoImpl {
      * 新闻测试类输出方法
      * @param news_list 新闻数据类返回集合
      * */
+
     private void News_Print(List<News> news_list){
         for (int i = 0; i < news_list.size(); i++) {
             System.out.println("新闻标题: "+ news_list.get(i).getHeadlines());

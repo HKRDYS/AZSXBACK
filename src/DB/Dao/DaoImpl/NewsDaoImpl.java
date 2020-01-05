@@ -103,7 +103,7 @@ public class NewsDaoImpl implements NewsDao {
         //获取数据库连接对象
         Connection conn = ConnectionManager.getConnection();
         //定义SQL字符串
-        String strSQL = "select * from news_data order by newsdate" ;
+        String strSQL = "select * from news_data order by newstime" ;
         try {
 
             // 创建语句对象
@@ -620,15 +620,16 @@ public class NewsDaoImpl implements NewsDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return err_arr;
         } catch (Exception e){
             System.out.println("服务器繁忙,错误原因:" + e.toString());
             e.printStackTrace();
+            return err_arr;
         }finally {
             if (is_err_over){
                 ConnectionManager.closeConnection(conn);
             }
         }
-        return err_arr;
     }
 
     @Override
@@ -792,14 +793,10 @@ public class NewsDaoImpl implements NewsDao {
         } finally {
 
             // 关闭数据库连接
-
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            ConnectionManager.closeConnection(conn);
             }
 
-        }
+
 
         // 返回类别集合
         return newslist;

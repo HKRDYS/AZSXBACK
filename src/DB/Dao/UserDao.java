@@ -21,7 +21,7 @@ public interface UserDao {
      * 返回: 0:普通用户，1:封禁状态，2：管理员
      * @return type
      * */
-    int User_type(String username);
+    int Find_User_type(int uid);
     //通过用户名查询用户UID
     int Find_UUid_ByUname(String unmae);
     //通过用户名删除用户
@@ -34,7 +34,7 @@ public interface UserDao {
     //根据用户名查询用户资料
     User Find_Userinfo_ByUname(String username);
     //通过用户uid修改用户状态
-    int UpdateUtype_ByUUid(String uid);
+    int UpdateUtype_ByUUid(int uid);
     //显示所有用户
     List<User> Find_AllUser();
 }

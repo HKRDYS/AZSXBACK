@@ -6,6 +6,7 @@ import DB.Dao.UserDao;
 
 import java.rmi.server.RemoteRef;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -66,25 +67,73 @@ public class UserDaoImpl implements UserDao {
         int count = 1;
         //初始化数据库连接，定义SQL语句
         Connection conn = ConnectionManager.getConnection();
-        String sql = "";
+        String sql = "update user_info " +
+                "set phone_number= ? ,email = ? ,birthday = ?" +
+                "where username = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,phone_number);
+            pstmt.setString(2,email);
+            //将注册时间转换为SQL时间储存
+            java.sql.Date sqlDate=new java.sql.Date(birthday.getTime());
+            pstmt.setDate(3,sqlDate);
+            pstmt.setString(4,username);
+            count = pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
         }
+        //返回更新成功数量
         return count;
     }
 
+    //通过uid查询用户状态
     @Override
-    public int User_type(String username) {
-        return 0;
+    public int Find_User_type(int uid) {
+        //默认状态为1
+        int type = 1;
+        //初始化数据库连接，sql语句
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "SELECT u_type from user_info where uid=?";
+        try {
+            //创建数据库语句预备对象
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,uid);
+            ResultSet rs = pstmt.executeQuery();
+            type = rs.getType();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
+        }
+
+        return type;
     }
+
 
     @Override
     public int Find_UUid_ByUname(String unmae) {
-        return 0;
+        int uuid = 0;
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "select uid from user_info where username=?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,unmae);
+            ResultSet rs = pstmt.executeQuery();
+            uuid=rs.getInt("uid");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
+        }
+
+        return uuid;
     }
 
+
+    //
     @Override
     public int Del_User_Byusername(String username) {
         return 0;
@@ -105,13 +154,46 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    //通过用户uid 改变用户状态
     @Override
-    public int UpdateUtype_ByUUid(String uid) {
+    public int UpdateUtype_ByUUid(int uid) {
         return 0;
     }
 
+   /**
+    * 功能:显示所有用户
+    * @return  返回User集合
+    * */
     @Override
     public List<User> Find_AllUser() {
-        return null;
+        //初始化返回值
+        List<User> list_User = new ArrayList<User>();
+        //初始化数据库连接及数据库字段
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "select * from user_info";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs =stmt.executeQuery(sql);
+            while (rs.next()){
+                User user = new User();
+                user.setUid(rs.getInt(rs.getInt("uid")));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setBirthday(rs.getDate("brithday"));
+                user.setPhonenumber(rs.getString("phone_number"));
+                user.setEmail(rs.getString("email"));
+                user.setU_type(rs.getInt("u_type"));
+                user.setRegisttime(rs.getTimestamp("registr_date"));
+                list_User.add(user);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
+        }
+
+
+        return list_User;
     }
 }
