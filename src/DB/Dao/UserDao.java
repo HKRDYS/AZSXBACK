@@ -13,7 +13,7 @@ public interface UserDao {
     //用户登录
     boolean Login(String username, String password);
     //用户添加自己的信息
-    int Add_UserInfo(String username, String password, String phone_number, String email, Date birthday);
+    int Add_UserInfo(String username, String phone_number, String email, Date birthday);
 
 
     /**

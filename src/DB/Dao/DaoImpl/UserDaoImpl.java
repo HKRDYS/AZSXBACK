@@ -61,8 +61,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int Add_UserInfo(String username, String password, String phone_number, String email, Date birthday) {
+    public int Add_UserInfo(String username,String phone_number, String email, Date birthday) {
+        //返回添加成功条数
         int count = 1;
+        //初始化数据库连接，定义SQL语句
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return count;
     }
 
