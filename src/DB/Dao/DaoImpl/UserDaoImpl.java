@@ -149,6 +149,7 @@ public class UserDaoImpl implements UserDao {
         return 0;
     }
 
+    //通过用户名查找用户信息
     @Override
     public User Find_Userinfo_ByUname(String username) {
         return null;
