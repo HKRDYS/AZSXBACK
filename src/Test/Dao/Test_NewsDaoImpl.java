@@ -38,6 +38,7 @@ public class Test_NewsDaoImpl {
         News_Print(L2);
     }
 
+    //测试日期显示
     @Test
     public void Test_FindNews_ByDate(){
         NewsDao t2 = new NewsDaoImpl();
