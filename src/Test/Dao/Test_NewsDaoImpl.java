@@ -7,6 +7,11 @@ import DB.Dao.NewsDao;
 import org.junit.Test;
 
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +35,7 @@ public class Test_NewsDaoImpl {
             System.out.println("第"+ i +"组数据测试完成！"+"\n");
         }
     }
-
+    //测试显示所有新闻
     @Test
     public void Test_FindNews_All() {
         NewsDao t1 = new NewsDaoImpl();
@@ -38,11 +43,86 @@ public class Test_NewsDaoImpl {
         News_Print(L2);
     }
 
-    //测试日期显示
+
+    //测试日期显示（按日期显示所有新闻）
     @Test
     public void Test_FindNews_ByDate(){
         NewsDao t2 = new NewsDaoImpl();
         List<News> L1 = t2.FindNews_ByDate();
         News_Print(L1);
     }
+
+
+    //测试更具类型显示新闻
+    @Test
+    public void Test_FindNews_ByType(){
+        NewsDao t3=new NewsDaoImpl();
+        List<News> L3=t3.FindNews_ByType("测试时间空项");
+        News_Print(L3);
+    }
+
+    //测试根据阅读量筛选新闻
+    @Test
+    public void Test_FindNews_ByCount(){
+        NewsDao t4=new NewsDaoImpl();
+        List<News> L4=t4.FindNews_ByCount(99,2);
+       News_Print(L4);
+    }
+
+
+    //测试根据阅读量升序排序新闻
+    @Test
+    public void Test_FindNews_By_Count_Odascending(){
+        NewsDao t5=new NewsDaoImpl();
+        List<News> L5=t5.FindNews_By_Count_Odascending();
+        News_Print(L5);
+    }
+
+
+    //测试根据阅读量降序排序新闻
+    @Test
+    public void Test_FindNews_By_Count_Oddescending(){
+        NewsDao t6=new NewsDaoImpl();
+        List<News> L6=t6.FindNews_By_Count_Oddescending();
+        News_Print(L6);
+    }
+
+
+    //测试添加新闻
+    @Test
+    public void Test_Add_News(){
+        NewsDao t7=new NewsDaoImpl();
+        int t = 2;
+        long tm = System.currentTimeMillis();
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String strDate = "2017-11-20 21:32:11";
+        java.util.Date date=null;
+        try{
+            date=sd.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Timestamp dateSQL = new Timestamp(date.getTime());
+
+        int L7=t7.Add_News("测试新闻2","新闻杂项","徐凤年","轩辕青锋nd",dateSQL,2);
+        System.out.println("成功添加:"+L7);
+    }
+
+    //测试根据id删除新闻
+    @Test
+    public void Test_Del_News_ById(){
+        NewsDao t8=new NewsDaoImpl();
+        int L8=t8.Del_News_ById(1);
+        System.out.println(L8);
+    }
+    //测试根据uid删除新闻
+    @Test
+    public void Test_Del_News_ByUid(){
+        NewsDao t9=new NewsDaoImpl();
+        int L9=t9.Del_News_ByUid(1);
+        System.out.println(L9);
+    }
+
+
+
 }

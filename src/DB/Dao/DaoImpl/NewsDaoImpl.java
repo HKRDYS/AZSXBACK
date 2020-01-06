@@ -461,7 +461,7 @@ public class NewsDaoImpl implements NewsDao {
         //获取数据库连接对象
         Connection conn = ConnectionManager.getConnection();
         //定义SQL字符串
-        String strSQL = "insert into news_data (headlines, type, newstime, maker, n_count) values (?, ?, ?, ?, ?)";
+        String strSQL = "insert into news_data (headlines, type, newstime, maker, n_count, uid, details) values (?, ?, ?, ?, ?, ?, ?)";
         try {
 
             // 创建语句对象
@@ -472,6 +472,8 @@ public class NewsDaoImpl implements NewsDao {
             psmt.setTimestamp(3,news_time);
             psmt.setString(4,maker);
             psmt.setInt(5,count);
+            psmt.setInt(6,uid);
+            psmt.setString(7,details);
 
 
             // 返回插入条数
