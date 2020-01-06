@@ -37,4 +37,11 @@ public class Test_NewsDaoImpl {
         List<News> L2 = t1.FindNews_All();
         News_Print(L2);
     }
+
+    @Test
+    public void Test_FindNews_ByDate(){
+        NewsDao t2 = new NewsDaoImpl();
+        List<News> L1 = t2.FindNews_ByDate();
+        News_Print(L1);
+    }
 }

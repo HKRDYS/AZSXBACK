@@ -124,7 +124,7 @@ public class NewsDaoImpl implements NewsDao {
                 news.setId(rs.getInt("id"));
                 news.setNewsdate(rs.getTimestamp("newstime"));
                 news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("count"));
+                news.setCount(rs.getInt("n_count"));
                 news.setMaker(rs.getString("maker"));
                 news.setNewstype(rs.getString("type"));
                 news.setDetails(rs.getString("details"));
@@ -198,7 +198,7 @@ public class NewsDaoImpl implements NewsDao {
                 news.setId(rs.getInt("id"));
                 news.setNewsdate(rs.getTimestamp("newstime"));
                 news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("count"));
+                news.setCount(rs.getInt("n_count"));
                 news.setMaker(rs.getString("maker"));
                 news.setNewstype(rs.getString("type"));
                 news.setDetails(rs.getString("details"));
@@ -273,7 +273,7 @@ public class NewsDaoImpl implements NewsDao {
                 news.setId(rs.getInt("id"));
                 news.setNewsdate(rs.getTimestamp("newstime"));
                 news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("count"));
+                news.setCount(rs.getInt("n_count"));
                 news.setMaker(rs.getString("maker"));
                 news.setNewstype(rs.getString("type"));
                 news.setDetails(rs.getString("details"));
