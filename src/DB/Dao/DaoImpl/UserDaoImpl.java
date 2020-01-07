@@ -316,10 +316,11 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs =stmt.executeQuery(sql);
             while (rs.next()){
                 User user = new User();
-                user.setUid(rs.getInt(rs.getInt("uid")));
+                user.setUid(rs.getInt("uid"));
+
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
-                user.setBirthday(rs.getDate("brithday"));
+                user.setBirthday(rs.getDate("birthday"));
                 user.setPhonenumber(rs.getString("phone_number"));
                 user.setEmail(rs.getString("email"));
                 user.setU_type(rs.getInt("u_type"));

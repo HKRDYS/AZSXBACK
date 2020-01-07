@@ -21,6 +21,7 @@ public interface UserDao {
      * 返回: 0:普通用户，1:封禁状态，2：管理员
      * @return type
      * */
+    //
     int Find_User_type(int uid);
     //通过用户名查询用户UID
     int Find_UUid_ByUname(String unmae);
