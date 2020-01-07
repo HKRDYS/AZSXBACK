@@ -160,7 +160,8 @@ public class Test_NewsDaoImpl {
     public void Test_FindNews_ById(){
         NewsDao t13=new NewsDaoImpl();
         News L13=t13.FindNews_ById(8);
-        System.out.println(L13.getDetails()+"    "+L13.getMaker());
+        System.out.println(L13.getDetails()+"   " +
+                " "+L13.getMaker());
     }
 
     //测试根据UID显示新闻
@@ -170,7 +171,12 @@ public class Test_NewsDaoImpl {
         List<News> L14=t14.FindNews_ByUid(2);
         News_Print(L14);
     }
-    //
+    //根据新闻ID更新新闻
+    @Test
+    public void Test_UpdataNews_ById(){
+        NewsDao t15=new NewsDaoImpl();
+
+    }
 
 
 }
