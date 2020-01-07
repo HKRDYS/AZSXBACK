@@ -264,12 +264,37 @@ public class UserDaoImpl implements UserDao {
         return user_info;
     }
 
-    //通过用户uid 改变用户状态
+    /**
+     * 功能:通过用户uid更改用户状态
+     * @param uid 用户uid
+     * @param u_type 用户状态
+     * @return count 更新数
+     * */
     @Override
     public int UpdateUtype_ByUUid(int uid,int u_type) {
+        //初始化更新数
+        int count = 0;
+        //创建数据库连接
+        Connection conn = ConnectionManager.getConnection();
+        //定义更新语句
+        String sql = "update user_info set u_type = ?  where uid = ?";
 
-        return 0;
+        try {
+            //创建数据库语句预备对象
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,u_type);
+            pstmt.setInt(2,uid);
+            count = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
+        }
+
+        return count;
     }
+
 
    /**
     * 功能:显示所有用户
