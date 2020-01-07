@@ -547,6 +547,7 @@ public class NewsDaoImpl implements NewsDao {
 
     /**
      *功能:根据UID删除新闻
+     * @param  uid 用户uid
      * @return count 删除成功条数 int
      * */
     @Override
@@ -704,6 +705,8 @@ public class NewsDaoImpl implements NewsDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
         }
         return uid;
 
@@ -737,6 +740,8 @@ public class NewsDaoImpl implements NewsDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
         }
         return news;
     }
@@ -832,6 +837,8 @@ public class NewsDaoImpl implements NewsDao {
         } catch (SQLException e) {
             System.out.println("更新失败");
             e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
         }
         return count;
     }

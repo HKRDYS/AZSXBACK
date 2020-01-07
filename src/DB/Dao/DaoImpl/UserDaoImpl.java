@@ -151,6 +151,8 @@ public class UserDaoImpl implements UserDao {
             count = pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
         }
         //返回删除行数
         return count;
@@ -178,9 +180,30 @@ public class UserDaoImpl implements UserDao {
         return count;
     }
 
+    /**
+     * 功能:更新用户密码
+     * @param username 用户名,String
+     * @param password 用户密码,String
+     * */
     @Override
     public int User_Updata_password(String username, String password) {
-        return 0;
+        //初始化更新条数，默认0
+        int count = 0;
+        //创建数据库连接
+        Connection conn = ConnectionManager.getConnection();
+        //初始化SQL语句
+        String sql = "update user_info set password = ? where username = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,password);
+            pstmt.setString(2,username);
+            count = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return count;
     }
 
     //通过用户名查找用户信息
