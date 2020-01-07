@@ -25,13 +25,20 @@ public class Test_NewsDaoImpl {
 
     private void News_Print(List<News> news_list){
         for (int i = 0; i < news_list.size(); i++) {
-            System.out.println("新闻标题: "+ news_list.get(i).getHeadlines());
-            System.out.println("新闻浏览量: "+ news_list.get(i).getCount());
-            System.out.println("新闻ID: "+ news_list.get(i).getId());
-            System.out.println("新闻作者: "+ news_list.get(i).getMaker());
-            System.out.println("新闻发表日期: "+news_list.get(i).getNewsdate());
-            System.out.println("新闻类型: "+news_list.get(i).getNewstype());
-            System.out.println("新闻内容: "+news_list.get(i).getDetails());
+            System.out.println("新闻标题: "+
+                    news_list.get(i).getHeadlines());
+            System.out.println("新闻浏览量: "+
+                    news_list.get(i).getCount());
+            System.out.println("新闻ID: "+
+                    news_list.get(i).getId());
+            System.out.println("新闻作者: "+
+                    news_list.get(i).getMaker());
+            System.out.println("新闻发表日期: "+
+                    news_list.get(i).getNewsdate());
+            System.out.println("新闻类型: "+
+                    news_list.get(i).getNewstype());
+            System.out.println("新闻内容: "+
+                    news_list.get(i).getDetails());
             System.out.println("第"+ i +"组数据测试完成！"+"\n");
         }
     }
@@ -65,7 +72,8 @@ public class Test_NewsDaoImpl {
     @Test
     public void Test_FindNews_ByCount(){
         NewsDao t4=new NewsDaoImpl();
-        List<News> L4=t4.FindNews_ByCount(99,2);
+        List<News> L4=t4.FindNews_ByCount
+                (99,2);
         News_Print(L4);
     }
 
@@ -99,12 +107,15 @@ public class Test_NewsDaoImpl {
         java.util.Date date=null;
         try{
             date=sd.parse(strDate);
-        } catch (ParseException e) {
+        }
+        catch (ParseException e)
+        {
             e.printStackTrace();
         }
         Timestamp dateSQL = new Timestamp(date.getTime());
 
-        int L7=t7.Add_News("测试新闻2","新闻杂项","徐凤年","轩辕青锋nd",dateSQL,2);
+        int L7=t7.Add_News("测试新闻2","新闻杂项",
+                "徐凤年","轩辕青锋nd",dateSQL,2);
         System.out.println("成功添加:"+L7);
     }
 
