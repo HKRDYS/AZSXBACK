@@ -104,7 +104,9 @@ public class UserDaoImpl implements UserDao {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,uid);
             ResultSet rs = pstmt.executeQuery();
-            type = rs.getType();
+            while (rs.next()){
+                type=rs.getInt("u_type");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -129,7 +131,9 @@ public class UserDaoImpl implements UserDao {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,unmae);
             ResultSet rs = pstmt.executeQuery();
-            uuid=rs.getInt("uid");
+            while (rs.next()){
+                uuid = rs.getInt("uid");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
