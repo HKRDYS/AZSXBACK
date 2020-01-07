@@ -38,6 +38,9 @@ public class UserDaoImpl implements UserDao {
         return count;
     }
 
+    /**
+     * 功能:根据用户名和密码
+     * */
     @Override
     public boolean Login(String username, String password) {
         //默认登录状态为false
@@ -112,6 +115,11 @@ public class UserDaoImpl implements UserDao {
     }
 
 
+    /**
+     * 功能:通过用户名查找用户ID
+     * @param unmae 用户名
+     * @return uuid
+     * */
     @Override
     public int Find_UUid_ByUname(String unmae) {
         int uuid = 0;
@@ -133,7 +141,10 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    //
+    /**
+     * 功能:通过用户名删除用户
+     * @param username 用户名
+     * */
     @Override
     public int Del_User_Byusername(String username) {
         //初始化删除条数
@@ -158,6 +169,12 @@ public class UserDaoImpl implements UserDao {
         return count;
     }
 
+
+    /**
+     * 功能:通过uid删除用户
+     * @param uid 用户uid
+     * @return count
+     * */
     @Override
     public int Del_User_ByUid(int uid) {
         //初始化删除条数
@@ -212,7 +229,11 @@ public class UserDaoImpl implements UserDao {
         return count;
     }
 
-    //通过用户名查找用户信息
+    /**
+     * 功能:通过用户名查找用户信息
+     * @param username 用户名
+     */
+
     @Override
     public User Find_Userinfo_ByUname(String username) {
         //初始化用户信息储存

@@ -165,6 +165,7 @@ public class NewsDaoImpl implements NewsDao {
 
     /**
      * 功能:根据类型显示新闻
+     * @param type 新闻类型
      * @return newslist 新闻对象集合 List<News>
      * */
     @Override
@@ -239,6 +240,8 @@ public class NewsDaoImpl implements NewsDao {
 
     /**
      * 功能:根据阅读量显示新闻
+     * @param max_count 最大阅读量
+     * @param min_count 最小阅读量
      * @return newlist 新闻对象集合 List<News>
      * */
     @Override
