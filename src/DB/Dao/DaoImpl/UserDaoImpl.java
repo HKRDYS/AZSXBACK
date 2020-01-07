@@ -186,6 +186,28 @@ public class UserDaoImpl implements UserDao {
     //通过用户名查找用户信息
     @Override
     public User Find_Userinfo_ByUname(String username) {
+        //初始化用户信息储存
+        User user_info = new User();
+
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "select * from user_info where username=?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,username);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                user_info.setUid(rs.getInt(1));
+                user_info.setUsername(rs.getString(2));
+                user_info.setPassword( rs.getString(3));
+                user_info.setBirthday( rs.getDate(4));
+                user_info.setPhonenumber(rs.getString(5));
+                user_info.setEmail(rs.getString(6));
+                user_info.setU_type(rs.getInt(7));
+                user_info.setRegisttime(rs.getDate(8));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
