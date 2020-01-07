@@ -40,7 +40,7 @@ public class ConnectionManager {
 
      */
 
-    private static final String URL = "jdbc:mysql://localhost:3306/azsx201912";
+    private static final String URL = "jdbc:mysql://localhost:3306/shixi";
 
     /**
 
@@ -48,7 +48,7 @@ public class ConnectionManager {
 
      */
 
-    private static final String USERNAME = "wd";
+    private static final String USERNAME = "root";
 
     /**
 
@@ -56,7 +56,7 @@ public class ConnectionManager {
 
      */
 
-    private static final String PASSWORD = "20002017du";
+    private static final String PASSWORD = "1";
 
 
 
