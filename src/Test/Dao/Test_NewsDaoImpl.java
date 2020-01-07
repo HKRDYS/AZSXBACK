@@ -199,7 +199,8 @@ public class Test_NewsDaoImpl {
             e.printStackTrace();
         }
         Timestamp dateSQL = new Timestamp(date.getTime());
-        int L15=t15.UpdataNews_ById(4,"测试新闻07","新闻杂项",dateSQL ,"轩辕敬城",7,"",1);
+        int L15=t15.UpdataNews_ById(4,"测试新闻07","新闻杂项",dateSQL ,"轩辕敬城",7,"哈哈公主",1);
+        System.out.println(L15);
 
     }
 

@@ -813,7 +813,7 @@ public class NewsDaoImpl implements NewsDao {
         //定义SQl语句
         String sql = "update news_data " +
                 "set headlines=?,type=?,newstime=?,maker=?,n_count=?,details=?,uid=?" +
-                "where id = ?;";
+                "where id = ?";
         //获取数据库连接对象
         Connection conn = ConnectionManager.getConnection();
 
