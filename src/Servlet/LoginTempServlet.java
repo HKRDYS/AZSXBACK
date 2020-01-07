@@ -73,6 +73,56 @@ public class LoginTempServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        //获取表单数据
+        try {
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+            String username = request.getParameter("username");
+            String pwd = request.getParameter("password");
+            String mode = request.getParameter("login_type");
+
+            String type = "'false'";
+            //设置输出对象
+            PrintWriter out = response.getWriter();
+
+            //判断用户登录模式
+            switch (mode) {
+                //用户名登录
+                case ("0"): {
+                    if (username.equals("test") & pwd.equals("1")) {
+                        //设置输出值
+                        type = "'true'";
+                        String str = "{'login_type':"
+                                + type
+                                + "}";
+                        //输出对象
+                        out.print(str);
+                    }
+                }
+                //电话登录
+                case ("1"): {
+                    if (username.equals("123456") & pwd.equals("1")) {
+                        type = "'true'";
+                        String str = "{'login_type':"
+                                + type
+                                + "}";
+                        //输出
+                        out.print(str);
+                    }
+                }
+                default: {
+                    String str = "{'login_type':"
+                            + type
+                            + "}";
+                    out.print(str);
+                }
+            }
+        }catch (Exception e){
+            System.out.println("请求错误!");
+            //设置输出对象
+            PrintWriter out = response.getWriter();
+            out.print("'login_type':'false'");
+            e.printStackTrace();
+        }
     }
 }
