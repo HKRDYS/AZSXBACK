@@ -175,6 +175,9 @@ public class UserDaoImpl implements UserDao {
             count = pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            //关闭数据库连接
+            ConnectionManager.closeConnection(conn);
         }
         //返回删除行数
         return count;
@@ -201,6 +204,9 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
 
+        }finally {
+            //关闭数据库连接
+            ConnectionManager.closeConnection(conn);
         }
 
         return count;
@@ -230,8 +236,11 @@ public class UserDaoImpl implements UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            //关闭数据库连接
+            ConnectionManager.closeConnection(conn);
         }
-        return null;
+        return user_info;
     }
 
     //通过用户uid 改变用户状态
