@@ -34,7 +34,7 @@ public interface UserDao {
     //根据用户名查询用户资料
     User Find_Userinfo_ByUname(String username);
     //通过用户uid修改用户状态
-    int UpdateUtype_ByUUid(int uid);
+    int UpdateUtype_ByUUid(int uid,int u_type);
     //显示所有用户
     List<User> Find_AllUser();
 }

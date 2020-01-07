@@ -136,12 +136,46 @@ public class UserDaoImpl implements UserDao {
     //
     @Override
     public int Del_User_Byusername(String username) {
-        return 0;
+        //初始化删除条数
+        int count = 0;
+        //获取数据库连接
+        Connection conn = ConnectionManager.getConnection();
+        //定义SQL语句
+        String sql = "delete * from user_info where username = ?";
+
+        try {
+            //设置数据库语句预备对象
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,username);
+
+            count = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //返回删除行数
+        return count;
     }
 
     @Override
     public int Del_User_ByUid(int uid) {
-        return 0;
+        //初始化删除条数
+        int count = 0;
+        //获取数据库连接
+        Connection conn = ConnectionManager.getConnection();
+        //定义SQL语句
+        String sql = "delete * from user_info where uid = ?";
+
+        try {
+            //设置数据库语句预备对象
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,uid);
+            //执行sql语句，返回删除量
+            count = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //返回删除行数
+        return count;
     }
 
     @Override
@@ -157,7 +191,8 @@ public class UserDaoImpl implements UserDao {
 
     //通过用户uid 改变用户状态
     @Override
-    public int UpdateUtype_ByUUid(int uid) {
+    public int UpdateUtype_ByUUid(int uid,int u_type) {
+
         return 0;
     }
 
