@@ -698,7 +698,9 @@ public class NewsDaoImpl implements NewsDao {
             pstmt.setInt(1,id);
             //执行SQl查询，返回结果集
             ResultSet rs = pstmt.executeQuery();
-            uid = rs.getInt("uid");
+            while (rs.next()){
+                uid = rs.getInt("uid");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -746,7 +748,7 @@ public class NewsDaoImpl implements NewsDao {
         //获取数据库连接对象
         Connection conn = ConnectionManager.getConnection();
         //定义SQL字符串
-        String strSQL = "select * from news_data where type = ?" ;
+        String strSQL = "select * from news_data where uid = ?" ;
         try {
 
             // 创建预备语句对象
@@ -770,7 +772,7 @@ public class NewsDaoImpl implements NewsDao {
                 news.setId(rs.getInt("id"));
                 news.setNewsdate(rs.getTimestamp("newstime"));
                 news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("count"));
+                news.setCount(rs.getInt("n_count"));
                 news.setMaker(rs.getString("maker"));
                 news.setNewstype(rs.getString("type"));
                 news.setDetails(rs.getString("details"));

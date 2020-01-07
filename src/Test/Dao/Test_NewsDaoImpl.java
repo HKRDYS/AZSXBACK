@@ -66,7 +66,7 @@ public class Test_NewsDaoImpl {
     public void Test_FindNews_ByCount(){
         NewsDao t4=new NewsDaoImpl();
         List<News> L4=t4.FindNews_ByCount(99,2);
-       News_Print(L4);
+        News_Print(L4);
     }
 
 
@@ -115,14 +115,62 @@ public class Test_NewsDaoImpl {
         int L8=t8.Del_News_ById(1);
         System.out.println(L8);
     }
+
     //测试根据uid删除新闻
     @Test
     public void Test_Del_News_ByUid(){
         NewsDao t9=new NewsDaoImpl();
-        int L9=t9.Del_News_ByUid(1);
+        int L9=t9.Del_News_ByUid(2);
         System.out.println(L9);
     }
 
+
+
+    //测试显示所有新闻类别
+    @Test
+    public void Test_Find_All_Type() {
+        NewsDao t10=new NewsDaoImpl();
+        String[] L10=t10.Find_All_Type();
+        for (String i : L10){
+            System.out.println(i);
+        }
+    }
+
+    //测试根据新闻名称和作者UID获取新闻ID
+    @Test
+    public void Test_FindNewsId_ByNewsNameUID(){
+        NewsDao t11=new NewsDaoImpl();
+        int[] L11=t11.FindNewsId_ByNewsNameUID("测试新闻06",1);
+        for(int i : L11){
+            System.out.println(i);
+        }
+
+    }
+
+    //测试根据新闻ID显示新闻作者UID
+    @Test
+    public void Test_FindNewsUid_ByNewsId(){
+        NewsDao t12=new NewsDaoImpl();
+        int L12=t12.FindNewsUid_ByNewsId(5);
+        System.out.println(L12);
+    }
+
+    //测试根据新闻ID显示新闻
+    @Test
+    public void Test_FindNews_ById(){
+        NewsDao t13=new NewsDaoImpl();
+        News L13=t13.FindNews_ById(8);
+        System.out.println(L13.getDetails()+"    "+L13.getMaker());
+    }
+
+    //测试根据UID显示新闻
+    @Test
+    public void Test_FindNews_ByUid(){
+        NewsDao t14=new NewsDaoImpl();
+        List<News> L14=t14.FindNews_ByUid(2);
+        News_Print(L14);
+    }
+    //
 
 
 }
