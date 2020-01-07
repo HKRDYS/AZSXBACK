@@ -811,9 +811,8 @@ public class NewsDaoImpl implements NewsDao {
         //初始化更新成功条数
         int count = 0;
         //定义SQl语句
-        String sql = "update news_data " +
-                "set headlines=?,type=?,newstime=?,maker=?,n_count=?,details=?,uid=?" +
-                "where id = ?;";
+        String sql = "update news_data set headlines=?,type=?,newstime=?,maker=?,n_count=?,details=?,uid=?" +
+                " where id=?";
         //获取数据库连接对象
         Connection conn = ConnectionManager.getConnection();
 
