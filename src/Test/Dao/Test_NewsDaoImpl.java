@@ -7,13 +7,13 @@ import DB.Dao.NewsDao;
 import org.junit.Test;
 
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class Test_NewsDaoImpl {
@@ -186,6 +186,20 @@ public class Test_NewsDaoImpl {
     @Test
     public void Test_UpdataNews_ById(){
         NewsDao t15=new NewsDaoImpl();
+        int t = 2;
+        long tm = System.currentTimeMillis();
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String strDate = "2017-11-20 21:32:11";
+        java.util.Date date=null;
+        try{
+            date=sd.parse(strDate);
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+        Timestamp dateSQL = new Timestamp(date.getTime());
+        int L15=t15.UpdataNews_ById(4,"测试新闻07","新闻杂项",dateSQL ,"轩辕敬城",7,"",1);
 
     }
 
