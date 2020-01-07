@@ -152,7 +152,7 @@ public class UserDaoImpl implements UserDao {
         //获取数据库连接
         Connection conn = ConnectionManager.getConnection();
         //定义SQL语句
-        String sql = "delete * from user_info where username = ?";
+        String sql = "delete from user_info where username = ?";
 
         try {
             //设置数据库语句预备对象
@@ -182,7 +182,7 @@ public class UserDaoImpl implements UserDao {
         //获取数据库连接
         Connection conn = ConnectionManager.getConnection();
         //定义SQL语句
-        String sql = "delete * from user_info where uid = ?";
+        String sql = "delete from user_info where uid = ?";
 
         try {
             //设置数据库语句预备对象
