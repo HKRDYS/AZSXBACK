@@ -806,6 +806,7 @@ public class NewsDaoImpl implements NewsDao {
         return newslist;
     }
 
+
     @Override
     public int UpdataNews_ById(int id,String headlnes,String type,Timestamp newstime,String maker,int n_count,String details,int uid) {
         //初始化更新成功条数
