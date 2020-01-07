@@ -38,6 +38,9 @@ public class UserDaoImpl implements UserDao {
         return count;
     }
 
+    /**
+     * 功能:根据用户名和密码
+     * */
     @Override
     public boolean Login(String username, String password) {
         //默认登录状态为false
@@ -112,6 +115,11 @@ public class UserDaoImpl implements UserDao {
     }
 
 
+    /**
+     * 功能:通过用户名查找用户ID
+     * @param unmae 用户名
+     * @return uuid
+     * */
     @Override
     public int Find_UUid_ByUname(String unmae) {
         int uuid = 0;
@@ -133,7 +141,10 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    //
+    /**
+     * 功能:通过用户名删除用户
+     * @param username 用户名
+     * */
     @Override
     public int Del_User_Byusername(String username) {
         //初始化删除条数
@@ -151,11 +162,19 @@ public class UserDaoImpl implements UserDao {
             count = pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
         }
         //返回删除行数
         return count;
     }
 
+
+    /**
+     * 功能:通过uid删除用户
+     * @param uid 用户uid
+     * @return count
+     * */
     @Override
     public int Del_User_ByUid(int uid) {
         //初始化删除条数
@@ -173,17 +192,48 @@ public class UserDaoImpl implements UserDao {
             count = pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            //关闭数据库连接
+            ConnectionManager.closeConnection(conn);
         }
         //返回删除行数
         return count;
     }
 
+    /**
+     * 功能:更新用户密码
+     * @param username 用户名,String
+     * @param password 用户密码,String
+     * */
     @Override
     public int User_Updata_password(String username, String password) {
-        return 0;
+        //初始化更新条数，默认0
+        int count = 0;
+        //创建数据库连接
+        Connection conn = ConnectionManager.getConnection();
+        //初始化SQL语句
+        String sql = "update user_info set password = ? where username = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,password);
+            pstmt.setString(2,username);
+            count = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }finally {
+            //关闭数据库连接
+            ConnectionManager.closeConnection(conn);
+        }
+
+        return count;
     }
 
-    //通过用户名查找用户信息
+    /**
+     * 功能:通过用户名查找用户信息
+     * @param username 用户名
+     */
+
     @Override
     public User Find_Userinfo_ByUname(String username) {
         //初始化用户信息储存
@@ -207,8 +257,11 @@ public class UserDaoImpl implements UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            //关闭数据库连接
+            ConnectionManager.closeConnection(conn);
         }
-        return null;
+        return user_info;
     }
 
     //通过用户uid 改变用户状态

@@ -165,6 +165,7 @@ public class NewsDaoImpl implements NewsDao {
 
     /**
      * 功能:根据类型显示新闻
+     * @param type 新闻类型
      * @return newslist 新闻对象集合 List<News>
      * */
     @Override
@@ -239,6 +240,8 @@ public class NewsDaoImpl implements NewsDao {
 
     /**
      * 功能:根据阅读量显示新闻
+     * @param max_count 最大阅读量
+     * @param min_count 最小阅读量
      * @return newlist 新闻对象集合 List<News>
      * */
     @Override
@@ -547,6 +550,7 @@ public class NewsDaoImpl implements NewsDao {
 
     /**
      *功能:根据UID删除新闻
+     * @param  uid 用户uid
      * @return count 删除成功条数 int
      * */
     @Override
@@ -704,6 +708,8 @@ public class NewsDaoImpl implements NewsDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
         }
         return uid;
 
@@ -737,6 +743,8 @@ public class NewsDaoImpl implements NewsDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
         }
         return news;
     }
@@ -806,14 +814,14 @@ public class NewsDaoImpl implements NewsDao {
         return newslist;
     }
 
+
     @Override
     public int UpdataNews_ById(int id,String headlnes,String type,Timestamp newstime,String maker,int n_count,String details,int uid) {
         //初始化更新成功条数
         int count = 0;
         //定义SQl语句
-        String sql = "update news_data " +
-                "set headlines=?,type=?,newstime=?,maker=?,n_count=?,details=?,uid=?" +
-                "where id = ?";
+        String sql = "update news_data set headlines=?,type=?,newstime=?,maker=?,n_count=?,details=?,uid=?" +
+                " where id=?";
         //获取数据库连接对象
         Connection conn = ConnectionManager.getConnection();
 
@@ -832,6 +840,8 @@ public class NewsDaoImpl implements NewsDao {
         } catch (SQLException e) {
             System.out.println("更新失败");
             e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
         }
         return count;
     }
