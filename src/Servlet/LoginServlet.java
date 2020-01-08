@@ -40,12 +40,11 @@ public class LoginServlet extends HttpServlet {
             username = request.getParameter("username");
             pwd = request.getParameter("password");
             mode = request.getParameter("mode");
+            boolean test = mode.equals("?");
 
 
         }catch (Exception e){
-            System.out.println("请求错误！");
-            PrintWriter out = response.getWriter();
-            out.print("{\"login\" : \"false\"}");
+            response.sendError(400, "请检查参数username=?,password=?,mode=?" );
             e.printStackTrace();
             return;
         }
@@ -86,9 +85,7 @@ public class LoginServlet extends HttpServlet {
 
             }
         else {
-            String str = "{\"login\" : \"false\"}";
-            PrintWriter out = response.getWriter();
-            out.print(str);
+            response.sendError(400,"请检查请求值！");
         }
 
     }

@@ -22,7 +22,7 @@ import java.util.Date;
 public class RegisterServlet extends HttpServlet {
     /**
      * 需要参数:username,password
-     * 返回值说明:0=请求有误，1=用户名已被注册，2=注册成功
+     * 返回值说明:1=用户名已被注册，2=注册成功
      *
      * */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,10 +37,8 @@ public class RegisterServlet extends HttpServlet {
             pwd = request.getParameter("password");
 
         }catch (Exception e){
-            System.out.println("请求错误！");
             e.printStackTrace();
-            PrintWriter out = response.getWriter();
-            out.print("0");
+            response.sendError(400, "预期之外的请求值，请检查username =?,password=? " );
             return;
         }
         UserDao us = new UserServer();
@@ -60,8 +58,7 @@ public class RegisterServlet extends HttpServlet {
             } catch (ParseException e) {
                 System.out.println("服务器异常!");
                 e.printStackTrace();
-                PrintWriter out = response.getWriter();
-                out.print("0");
+                response.sendError(500, "服务器内部错误" );
                 return;
             }
 

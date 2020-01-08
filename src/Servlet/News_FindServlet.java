@@ -21,7 +21,7 @@ import java.util.List;
 @WebServlet(name = "News_FindServlet" ,value = "/News")
 public class News_FindServlet extends HttpServlet {
     /**
-     * 需要参数:Find = ?
+     * 需要参数:find = ?
      * Find 可以为: all , bytype
      * 返回:json字符串
      * */
@@ -31,8 +31,9 @@ public class News_FindServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         try {
             //获取请求类型
-            String re = request.getParameter("Find");
+            String re = request.getParameter("find");
             System.out.println(re);
+            //如果请求值为find = all (显示所有新闻)
             if (re.equals("all")){
                 NewsDao allnews = new NewsServer();
                 List<News> lsNews = allnews.FindNews_All();
@@ -40,23 +41,28 @@ public class News_FindServlet extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.print(re_news);
             }
+            //如果请求值find = bytype(按新闻类型查询)
             else if(re.equals("bytype")){
                 String type = request.getParameter("type");
                 if(type.equals("")){
-                    PrintWriter out = response.getWriter();
-                    out.print("null");
+                    response.sendError(400, "预期之外的请求类型!请检查请求值，type =?" );
                     return;
                 }
                 NewsDao newsDao = new NewsServer();
-                List<News> lsnews = newsDao.FindNews_ByType(type);
-            }
-            else {
+                List<News> lsNews = newsDao.FindNews_ByType(type);
+                //将数组集转换为json数组并输出
+                String re_news = Print_Helper(lsNews);
                 PrintWriter out = response.getWriter();
-                out.print("请检查请求值！");
+                out.print(re_news);
+            }
+            //如果
+            //请求值为预期之外
+            else {
+
+                response.sendError(400,"预期之外的请求类型!请检查请求值,find=?");
             }
         }catch (Exception e){
-            PrintWriter out = response.getWriter();
-            out.print("请求错误!");
+            response.sendError(400, "请检查请求的参数,find?" );
             e.printStackTrace();
         }
     }
@@ -97,6 +103,7 @@ public class News_FindServlet extends HttpServlet {
             for(String s : arr){
                 n+=1;
                 rs_news.append("\""+s+"\"");
+                //n的比较值为arr的长度
                 if(n<6){
                     rs_news.append(",");
                 }
