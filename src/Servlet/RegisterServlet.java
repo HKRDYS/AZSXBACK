@@ -14,8 +14,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "RegisterServlet")
+/**
+ * 功能：接受来自安卓前端的URL请求
+ * URL:/Register
+ * */
+@WebServlet(name = "RegisterServlet",value = "/Register")
 public class RegisterServlet extends HttpServlet {
+    /**
+     * 需要参数:username,password
+     * 返回值说明:0=请求有误，1=用户名已被注册，2=注册成功
+     *
+     * */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取表单数据
         String username="";

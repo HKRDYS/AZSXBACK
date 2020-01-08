@@ -42,4 +42,6 @@ public interface UserDao {
     int UpdateUtype_ByUUid(int uid,int u_type);
     //显示所有用户
     List<User> Find_AllUser();
+    //通过用户电话号码解析用户名
+    String Find_Username_ByPhone(String phone);
 }

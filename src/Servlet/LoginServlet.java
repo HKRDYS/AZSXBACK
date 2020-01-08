@@ -53,15 +53,28 @@ public class LoginServlet extends HttpServlet {
                 UserDao userinfo = new UserServer();
                 boolean type = userinfo.Login(username,pwd);
                 if (type){
-                    String str = "{'login': 'true'}";
+                    String str = "{\"login\" : \"true\"}";
                     PrintWriter out = response.getWriter();
                     out.print(str);
             }else{
-                String str = "{'login' : 'false'}";
+                String str = "{\"login\" : \"false\"}";
+                PrintWriter out = response.getWriter();
+                out.print(str);
 
                 }
             }case ("1"):{
                 UserDao userDao = new UserServer();
+                String us = userDao.Find_Username_ByPhone(username);
+                if(!us.equals("")){
+                    String str = "{\"login\" : \"true\"}";
+                    PrintWriter out = response.getWriter();
+                    out.print(str);
+                }else {
+                    String str = "{\"login\" : \"false\"}";
+                    PrintWriter out = response.getWriter();
+                    out.print(str);
+                }
+
             }
         }
     }

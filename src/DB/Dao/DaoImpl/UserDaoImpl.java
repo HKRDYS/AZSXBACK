@@ -340,4 +340,31 @@ public class UserDaoImpl implements UserDao {
 
         return list_User;
     }
+
+
+    /**
+     * 功能:通过电话号码查询用户名
+     * @param  phone 类型:String
+     * @return username
+     * */
+    @Override
+    public String Find_Username_ByPhone(String phone) {
+        //初始化数据库连接及数据库字段
+        String  username = "";
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "select username from user_info where phone_number=?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,phone);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                username = rs.getString("username");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            ConnectionManager.closeConnection(conn);
+        }
+        return username;
+    }
 }
