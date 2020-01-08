@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
         try {
             request.setCharacterEncoding("utf-8");
             response.setCharacterEncoding("utf-8");
+            response.setContentType("text/html;charset=utf-8");
             username = request.getParameter("username");
             pwd = request.getParameter("password");
             mode = request.getParameter("mode");
@@ -48,21 +49,21 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
             return;
         }
-        switch (mode){
-            case ("0"):{
+        if (mode.equals("0")){
                 UserDao userinfo = new UserServer();
                 boolean type = userinfo.Login(username,pwd);
                 if (type){
                     String str = "{\"login\" : \"true\"}";
                     PrintWriter out = response.getWriter();
                     out.print(str);
-            }else{
+                    }
+                else{
                 String str = "{\"login\" : \"false\"}";
                 PrintWriter out = response.getWriter();
                 out.print(str);
-
                 }
-            }case ("1"):{
+            }
+        else if (mode.equals("1")){
                 UserDao userDao = new UserServer();
                 String us = userDao.Find_Username_ByPhone(username);
                 if(!us.equals("")){
@@ -84,10 +85,18 @@ public class LoginServlet extends HttpServlet {
                 }
 
             }
+        else {
+            String str = "{\"login\" : \"false\"}";
+            PrintWriter out = response.getWriter();
+            out.print(str);
         }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         doPost(request,response);
     }
 

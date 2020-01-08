@@ -28,6 +28,7 @@ public class LoginTempServlet extends HttpServlet {
         try {
             request.setCharacterEncoding("utf-8");
             response.setCharacterEncoding("utf-8");
+            response.setContentType("text/html;charset=utf-8");
             String username = request.getParameter("username");
             String pwd = request.getParameter("password");
             //设置输出对象
@@ -49,6 +50,9 @@ public class LoginTempServlet extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         doPost(request,response);
     }
 }

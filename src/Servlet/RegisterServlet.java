@@ -29,6 +29,7 @@ public class RegisterServlet extends HttpServlet {
         //获取表单数据
         String username="";
         String pwd="";
+        response.setContentType("text/html;charset=utf-8");
         try {
             request.setCharacterEncoding("utf-8");
             response.setCharacterEncoding("utf-8");
@@ -74,7 +75,9 @@ public class RegisterServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         doPost(request,response);
     }
 }
