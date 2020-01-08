@@ -71,11 +71,13 @@ public class LoginServlet extends HttpServlet {
                         String str = "{\"login\" : \"true\"}";
                         PrintWriter out = response.getWriter();
                         out.print(str);
+                        System.out.println(str);
                     }
                     else {
                         String str = "{\"login\" : \"false\"}";
                         PrintWriter out = response.getWriter();
                         out.print(str);
+                        System.out.println(str);
                     }
                 }else {
                     String str = "{\"login\" : \"false\"}";

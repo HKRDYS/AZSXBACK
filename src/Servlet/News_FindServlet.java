@@ -55,7 +55,36 @@ public class News_FindServlet extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.print(re_news);
             }
-            //如果
+            //如果请求值find = dateorder;
+            else if(re.equals("dateorder")){
+                NewsDao newsDao = new NewsServer();
+                List<News> lsNews = newsDao.FindNews_ByDate();
+                //将数组集转换为json数组并输出
+                String re_news = Print_Helper(lsNews);
+                PrintWriter out = response.getWriter();
+                out.print(re_news);
+                //显示所有新闻类型
+            }else if(re.equals("type")){
+                NewsDao newsDao = new NewsServer();
+                String[] arr = newsDao.Find_All_Type();
+                StringBuffer sb = new StringBuffer();
+                sb.append("{");
+                int id = 0;
+                for (String n :arr){
+                    id++;
+                    String s_id =  String.valueOf(id);
+                    sb.append("\""+s_id+"\":");
+                    sb.append("\""+n+"\"");
+                    if(id<arr.length){
+                        sb.append(",");
+                    }else {
+                        sb.append("}");
+                    }
+                }
+                PrintWriter out = response.getWriter();
+                out.print(sb);
+            }
+
             //请求值为预期之外
             else {
 
@@ -104,7 +133,7 @@ public class News_FindServlet extends HttpServlet {
                 n+=1;
                 rs_news.append("\""+s+"\"");
                 //n的比较值为arr的长度
-                if(n<6){
+                if(n<arr.length){
                     rs_news.append(",");
                 }
             }

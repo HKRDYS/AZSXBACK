@@ -15,13 +15,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 功能：接受来自安卓前端的URL请求
+ * 功能：接受来自安卓前端的注册请求
  * URL:/AZSXBACK_war_exploded/Register
  * */
 @WebServlet(name = "RegisterServlet",value = "/Register")
 public class RegisterServlet extends HttpServlet {
     /**
      * 需要参数:username,password
+     *
      * 返回值说明:1=用户名已被注册，2=注册成功
      *
      * */
@@ -46,7 +47,7 @@ public class RegisterServlet extends HttpServlet {
 
         if (count != 0){
             PrintWriter out = response.getWriter();
-            out.print("1");
+            out.print("{\"register\":\"1\"}");
         }
         else {
             Date date = new Date();//获得系统时间.
@@ -64,7 +65,7 @@ public class RegisterServlet extends HttpServlet {
 
             if(count == 1){
                 PrintWriter out = response.getWriter();
-                out.print("2");
+                out.print("{\"register\":\"2\"}");
             }
 
 

@@ -2,6 +2,7 @@ package DB.Dao.DaoImpl;
 
 
 import DB.Bean.News;
+import DB.Bean.User;
 import DB.DBhelper.ConnectionManager;
 import DB.Dao.NewsDao;
 
@@ -45,27 +46,7 @@ public class NewsDaoImpl implements NewsDao {
             ResultSet rs = stmt.executeQuery(strSQL);
 
 
-            // 遍历结果集
-            while (rs.next()) {
-                // 创建新闻实体
-
-
-                News news = new News();
-
-                // 设置实体属性
-                news.setId(rs.getInt("id"));
-                news.setNewsdate(rs.getTimestamp("newstime"));
-                news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("n_count"));
-                news.setMaker(rs.getString("maker"));
-                news.setNewstype(rs.getString("type"));
-                news.setDetails(rs.getString("details"));;
-                // 将实体添加到类别列表
-
-                newslist.add(news);
-
-            }
-
+           newslist = SetNews_Helper(rs);
             // 关闭结果集
 
             rs.close();
@@ -114,25 +95,8 @@ public class NewsDaoImpl implements NewsDao {
 
             ResultSet rs = stmt.executeQuery(strSQL);
 
-            // 遍历结果集
 
-            while (rs.next()) {
-                // 创建新闻实体
-                News news = new News();
-
-                // 设置实体属性
-                news.setId(rs.getInt("id"));
-                news.setNewsdate(rs.getTimestamp("newstime"));
-                news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("n_count"));
-                news.setMaker(rs.getString("maker"));
-                news.setNewstype(rs.getString("type"));
-                news.setDetails(rs.getString("details"));
-                // 将实体添加到类别列表
-
-                newslist.add(news);
-
-            }
+            newslist = SetNews_Helper(rs);
 
             // 关闭结果集
 
@@ -191,23 +155,7 @@ public class NewsDaoImpl implements NewsDao {
 
             // 遍历结果集
 
-            while (rs.next()) {
-                // 创建新闻实体
-                News news = new News();
-
-                // 设置实体属性
-                news.setId(rs.getInt("id"));
-                news.setNewsdate(rs.getTimestamp("newstime"));
-                news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("n_count"));
-                news.setMaker(rs.getString("maker"));
-                news.setNewstype(rs.getString("type"));
-                news.setDetails(rs.getString("details"));
-                // 将实体添加到类别列表
-
-                newslist.add(news);
-
-            }
+            newslist = SetNews_Helper(rs);
 
             // 关闭结果集
 
@@ -268,23 +216,7 @@ public class NewsDaoImpl implements NewsDao {
 
             // 遍历结果集
 
-            while (rs.next()) {
-                // 创建新闻实体
-                News news = new News();
-
-                // 设置实体属性
-                news.setId(rs.getInt("id"));
-                news.setNewsdate(rs.getTimestamp("newstime"));
-                news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("n_count"));
-                news.setMaker(rs.getString("maker"));
-                news.setNewstype(rs.getString("type"));
-                news.setDetails(rs.getString("details"));
-                // 将实体添加到类别列表
-
-                newslist.add(news);
-
-            }
+            newslist = SetNews_Helper(rs);
 
             // 关闭结果集
 
@@ -339,25 +271,7 @@ public class NewsDaoImpl implements NewsDao {
 
 
             // 遍历结果集
-            while (rs.next()) {
-                // 创建新闻实体
-
-
-                News news = new News();
-
-                // 设置实体属性
-                news.setId(rs.getInt("id"));
-                news.setNewsdate(rs.getTimestamp("newstime"));
-                news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("n_count"));
-                news.setMaker(rs.getString("maker"));
-                news.setNewstype(rs.getString("type"));
-                news.setDetails(rs.getString("details"));;
-                // 将实体添加到类别列表
-
-                newslist.add(news);
-
-            }
+            newslist = SetNews_Helper(rs);
 
             // 关闭结果集
 
@@ -408,25 +322,7 @@ public class NewsDaoImpl implements NewsDao {
 
 
             // 遍历结果集
-            while (rs.next()) {
-                // 创建新闻实体
-
-
-                News news = new News();
-
-                // 设置实体属性
-                news.setId(rs.getInt("id"));
-                news.setNewsdate(rs.getTimestamp("newstime"));
-                news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("n_count"));
-                news.setMaker(rs.getString("maker"));
-                news.setNewstype(rs.getString("type"));
-                news.setDetails(rs.getString("details"));;
-                // 将实体添加到类别列表
-
-                newslist.add(news);
-
-            }
+            newslist = SetNews_Helper(rs);
 
             // 关闭结果集
 
@@ -770,25 +666,7 @@ public class NewsDaoImpl implements NewsDao {
 
             ResultSet rs = psmt.executeQuery();
 
-            // 遍历结果集
-
-            while (rs.next()) {
-                // 创建新闻实体
-                News news = new News();
-
-                // 设置实体属性
-                news.setId(rs.getInt("id"));
-                news.setNewsdate(rs.getTimestamp("newstime"));
-                news.setNewshead(rs.getString("headlines"));
-                news.setCount(rs.getInt("n_count"));
-                news.setMaker(rs.getString("maker"));
-                news.setNewstype(rs.getString("type"));
-                news.setDetails(rs.getString("details"));
-                // 将实体添加到类别列表
-
-                newslist.add(news);
-
-            }
+            newslist = SetNews_Helper(rs);
 
             // 关闭结果集
 
@@ -849,5 +727,30 @@ public class NewsDaoImpl implements NewsDao {
 
     public int getReturn_number() {
         return return_number;
+    }
+    /**
+     * 新闻属性设置封装类
+     * @param rs
+     * @return newslist
+     * */
+    private List<News>  SetNews_Helper (ResultSet rs){
+        List<News> ln = new ArrayList<News>();
+        try {
+            while (rs.next()){
+                News news = new News();
+                news.setId(rs.getInt("id"));
+                news.setNewsdate(rs.getTimestamp("newstime"));
+                news.setNewshead(rs.getString("headlines"));
+                news.setCount(rs.getInt("n_count"));
+                news.setMaker(rs.getString("maker"));
+                news.setNewstype(rs.getString("type"));
+                news.setDetails(rs.getString("details"));
+                ln.add(news);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ln;
     }
 }

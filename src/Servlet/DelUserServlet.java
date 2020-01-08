@@ -14,7 +14,9 @@ import java.io.IOException;
 @WebServlet(name = "DelUserServlet",value = "/DelUser")
 public class DelUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //获取表单数据
+        String username="";
+        String pwd="";
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

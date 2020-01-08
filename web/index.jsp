@@ -8,9 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>2019安卓实训后台首页</title>
+
   </head>
   <body>
-  $END$
+    <h3>登录界面→&nbsp;/Login</h3>
+    <h3>注册界面→&nbsp;/Register</h3>
+    <h3>用户信息管理→&nbsp;/UserManagement</h3>
+    <h3>查看所有用户(管理员)→&nbsp;/AllUser</h3>
+    <h3>新闻浏览→&nbsp;/News</h3>
   </body>
 </html>
