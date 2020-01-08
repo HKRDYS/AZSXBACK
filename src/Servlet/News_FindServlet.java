@@ -68,7 +68,11 @@ public class News_FindServlet extends HttpServlet {
         doPost(request,response);
     }
 
-
+    /**
+     * 功能:将News集合转为json数组
+     * @param tlnews News集合
+     * @return json数组
+     * */
     private String Print_Helper(List<News> tlnews){
         StringBuffer rs_news = new StringBuffer();
         rs_news.append("{");

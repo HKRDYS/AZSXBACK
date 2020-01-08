@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
  /**
-  * 功能:实现用户登录验证
+  * 功能:实现删除用户功能
   * URL: /AZSXBACK_war_exploded/DelUser
   *
   * */
