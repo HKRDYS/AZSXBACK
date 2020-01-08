@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 /**
  * created by xiaolintuoer on 2020/1/6
  * 功能:实现用户登录验证
- * URL: /Login
+ * URL: /AZSXBACK_war_exploded/Login
  *
  * */
 @WebServlet(name = "LoginServlet",value = "/Login"

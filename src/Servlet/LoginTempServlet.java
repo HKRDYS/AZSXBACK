@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 /**
  * created by xiaolintuoer on 2020/1/5
  * 功能：实现用户信息临时验证（未连接数据库）
- * URL:  /TLogin
+ * URL:  /AZSXBACK_war_exploded/TLogin
  * */
 
 @WebServlet(name = "LoginTempServlet",value = "/TLogin")

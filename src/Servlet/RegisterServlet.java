@@ -16,7 +16,7 @@ import java.util.Date;
 
 /**
  * 功能：接受来自安卓前端的URL请求
- * URL:/Register
+ * URL:/AZSXBACK_war_exploded/Register
  * */
 @WebServlet(name = "RegisterServlet",value = "/Register")
 public class RegisterServlet extends HttpServlet {
