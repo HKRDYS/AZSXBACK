@@ -7,6 +7,10 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Date 2020/1/2
+ * 功能:新闻信息读取接口
+ * */
 public interface NewsDao {
 
     //显示所有新闻

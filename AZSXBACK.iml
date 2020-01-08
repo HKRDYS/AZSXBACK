@@ -31,5 +31,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="junit-4.12" level="project" />
+    <orderEntry type="library" name="httpclient-4.5.5" level="project" />
+    <orderEntry type="library" name="commons-cli-1.2" level="project" />
+    <orderEntry type="library" name="org.slf4j" level="project" />
   </component>
 </module>

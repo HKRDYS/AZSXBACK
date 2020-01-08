@@ -9,7 +9,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * Date 2020/1/4
+ * 功能:实现新闻读取接口
+ * */
 public class UserDaoImpl implements UserDao {
     @Override
     public int Regist(String username, String password,Date registrdate) {

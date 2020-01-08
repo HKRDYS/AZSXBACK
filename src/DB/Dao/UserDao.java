@@ -7,6 +7,10 @@ import DB.Bean.User;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Date 2020/1/2
+ * 功能:用户信息读取接口
+ * */
 public interface UserDao {
     //用户注册
     int Regist(String username, String password, Date registrdate);
