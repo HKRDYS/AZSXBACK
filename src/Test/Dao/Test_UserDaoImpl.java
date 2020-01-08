@@ -124,6 +124,13 @@ public class Test_UserDaoImpl {
             System.out.println(L10.get(i).getUsername());
         }
     }
+    //测试通过电话号码查询用户名
+    @Test
+    public void Test_Find_Username_ByPhone(){
+        UserDao t11=new UserDaoImpl();
+        String L11=t11.Find_Username_ByPhone("111112");
+        System.out.println(L11);
+    }
 
 
 

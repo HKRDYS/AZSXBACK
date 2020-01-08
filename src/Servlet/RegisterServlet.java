@@ -63,6 +63,7 @@ public class RegisterServlet extends HttpServlet {
                 out.print("0");
                 return;
             }
+
             if(count == 1){
                 PrintWriter out = response.getWriter();
                 out.print("2");
