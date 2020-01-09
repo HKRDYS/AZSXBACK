@@ -2,12 +2,9 @@ package DB.Dao.DaoImpl;
 
 
 import DB.Bean.News;
-import DB.Bean.User;
 import DB.DBhelper.ConnectionManager;
 import DB.Dao.NewsDao;
 
-import java.lang.reflect.Type;
-import java.net.Proxy;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -685,6 +682,7 @@ public class NewsDaoImpl implements NewsDao {
 
             ResultSet rs = psmt.executeQuery();
 
+            //遍历并转换结果集
             newslist = SetNews_Helper(rs);
 
             // 关闭结果集
@@ -769,7 +767,7 @@ public class NewsDaoImpl implements NewsDao {
 
             ResultSet rs = psmt.executeQuery();
 
-            // 遍历结果集
+            // 遍历并转换结果集
 
             newslist = SetNews_Helper(rs);
 
@@ -805,7 +803,7 @@ public class NewsDaoImpl implements NewsDao {
         return return_number;
     }
     /**
-     * 新闻属性设置封装类
+     * 新闻属性设置封装方法
      * @param rs 数据库返回集
      * @return newslist
      * */

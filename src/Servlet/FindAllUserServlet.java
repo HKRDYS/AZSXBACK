@@ -16,8 +16,10 @@ import java.util.List;
 
 
 /**
+ * 功能:显示所有用户的信息
  * 参数需要: username，password
  *权限不足抛出401异常
+ * URL:/AZSXBACK_war_exploded/AllUser
  *返回:json字符串数组{"userinfo":[{"uid":["username","password","birthday","phonenumber,email,u_type,registr_date"]}]}
  */
 @WebServlet(name = "FindAllUserServlet" ,value = "/AllUser")

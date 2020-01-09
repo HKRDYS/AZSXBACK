@@ -24,8 +24,6 @@ public class User {
     //用户注册日期
     private Date registtime;
 
-    //用户状态
-    private int user_type;
 
     public String getUsername() {
         return username;
@@ -92,12 +90,5 @@ public class User {
         this.registtime = registtime;
     }
 
-    public int getUser_type() {
-        return user_type;
-    }
-
-    public void setUser_type(int user_type) {
-        this.user_type = user_type;
-    }
 }
 

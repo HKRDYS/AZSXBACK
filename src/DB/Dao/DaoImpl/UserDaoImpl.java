@@ -4,7 +4,6 @@ import DB.Bean.User;
 import DB.DBhelper.ConnectionManager;
 import DB.Dao.UserDao;
 
-import java.rmi.server.RemoteRef;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +41,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     /**
-     * 功能:根据用户名和密码
+     * 功能:根据用户名和密码登录
+     * @param username 用户名
+     * @param password 用户密码
      * */
     @Override
     public boolean Login(String username, String password) {
@@ -67,6 +68,14 @@ public class UserDaoImpl implements UserDao {
         return is_login;
     }
 
+
+    /**
+     * 功能：添加用户信息
+     * @param username 用户名
+     * @param phone_number 电话号码
+     * @param email 邮箱
+     * @param birthday 生日
+     * */
     @Override
     public int Add_UserInfo(String username,String phone_number, String email, Date birthday) {
         //返回添加成功条数
@@ -94,7 +103,11 @@ public class UserDaoImpl implements UserDao {
         return count;
     }
 
-    //通过uid查询用户状态
+    /**
+     * 通过uid查询用户状态
+     * @param uid 用户id
+     * @return 用户状态 int
+     */
     @Override
     public int Find_User_type(int uid) {
         //默认状态为1
@@ -151,6 +164,7 @@ public class UserDaoImpl implements UserDao {
     /**
      * 功能:通过用户名删除用户
      * @param username 用户名
+     * @return 删除行数
      * */
     @Override
     public int Del_User_Byusername(String username) {
@@ -180,7 +194,7 @@ public class UserDaoImpl implements UserDao {
     /**
      * 功能:通过uid删除用户
      * @param uid 用户uid
-     * @return count
+     * @return count 删除行数
      * */
     @Override
     public int Del_User_ByUid(int uid) {
@@ -319,6 +333,7 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs =stmt.executeQuery(sql);
             while (rs.next()){
                 User user = new User();
+                //获取表达数据并写入
                 user.setUid(rs.getInt("uid"));
 
                 user.setUsername(rs.getString("username"));
@@ -334,6 +349,7 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
+            //关闭数据库连接
             ConnectionManager.closeConnection(conn);
         }
 
@@ -345,7 +361,7 @@ public class UserDaoImpl implements UserDao {
     /**
      * 功能:通过电话号码查询用户名
      * @param  phone 类型:String
-     * @return username
+     * @return username 用户名
      * */
     @Override
     public String Find_Username_ByPhone(String phone) {
