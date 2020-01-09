@@ -64,8 +64,8 @@ public class News_FindServlet extends HttpServlet {
                 String re_news = Print_Helper(lsNews);
                 PrintWriter out = response.getWriter();
                 out.print(re_news);
-                //显示所有新闻类型
             }
+            //显示所有新闻类型
             else if(re.equals("type")){
                 NewsDao newsDao = new NewsServer();
                 String[] arr = newsDao.Find_All_Type();
@@ -86,6 +86,7 @@ public class News_FindServlet extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.print(sb);
             }
+            //如果是根据新闻标题返回新闻
             else if(re.equals("byname")){
                 NewsDao newsDao = new NewsDaoImpl();
                 String name = "";
