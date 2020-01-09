@@ -1,5 +1,6 @@
 package Servlet;
 
+import DB.Bean.User;
 import DB.Dao.UserDao;
 import DB.server.UserServer;
 
@@ -13,6 +14,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 功能：接受来自安卓前端的注册请求
@@ -23,8 +25,8 @@ public class RegisterServlet extends HttpServlet {
     /**
      * 需要参数:username,password
      *
-     * 返回值说明:1=用户名已被注册，2=注册成功
-     *
+     * 如果注册成功返回 {"register": "2"}
+     * 用户名已被注册返回 {"register" : "1"}
      * */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取表单数据
@@ -77,4 +79,5 @@ public class RegisterServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         doPost(request,response);
     }
+
 }

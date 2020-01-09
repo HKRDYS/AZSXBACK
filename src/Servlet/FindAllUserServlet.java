@@ -14,6 +14,12 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
+
+/**
+ * 参数需要: username，password
+ *权限不足抛出401异常
+ *返回:json字符串数组
+ */
 @WebServlet(name = "FindAllUserServlet" ,value = "/AllUser")
 public class FindAllUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,47 +44,11 @@ public class FindAllUserServlet extends HttpServlet {
                 return;
             }
             List<User> userList = userinfo.Find_AllUser();
-            StringBuffer sb = new StringBuffer();
-            sb.append("{");
-            for (int i=0;i<userList.size();i++){
-                uid = userList.get(i).getUid();
-                String uame = userList.get(i).getUsername();
-                String password = userList.get(i).getPassword();
-                Date brithday = userList.get(i).getBirthday();
-                String phone = userList.get(i).getPhonenumber();
-                String email = userList.get(i).getEmail();
-                int u_type = userList.get(i).getU_type();
-                Date regtime = userList.get(i).getRegisttime();
-                String s_uid = String.valueOf(uid);
-                String reg = String.valueOf(regtime);
-                String s_brithday = String.valueOf(brithday);
-                String s_u_type = String.valueOf(u_type);
-                //获取并封装users
-                String arr[] = {uame,password,s_brithday,phone,email,reg};
-                sb.append("\""+s_uid+"\":");
-                sb.append("[");
-                //初始化预读取列表长度
-                int n = 0;
-                for(String s : arr){
-                    n+=1;
-                    sb.append("\""+s+"\"");
-                    //n的比较值为arr的长度
-                    if(n<arr.length){
-                        sb.append(",");
-                    }
-                }
-                if(i<userList.size()-1){
-                    //设置json字符串结尾
-                    sb.append("]\""+",");
-                }
-                else {
-                    //设置json数组字符串结尾
-                    sb.append("]\"}");
-                }
+                String info = Print_Helper(userList);
                 PrintWriter out = response.getWriter();
-                out.print(sb.toString());
-            }
-        }catch (Exception e){
+                out.print(info);
+        }
+        catch (Exception e){
             response.sendError(400,"请检查参数username =?,password=?");
             e.printStackTrace();
         }
@@ -89,5 +59,50 @@ public class FindAllUserServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         doPost(request,response);
+    }
+
+    private String Print_Helper(List<User> userList) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("{");
+        sb.append("\"userinfo\":[{");
+        for (int i = 0; i < userList.size(); i++) {
+            int uid = userList.get(i).getUid();
+            String uame = userList.get(i).getUsername();
+            String password = userList.get(i).getPassword();
+            Date brithday = userList.get(i).getBirthday();
+            String phone = userList.get(i).getPhonenumber();
+            String email = userList.get(i).getEmail();
+            int u_type = userList.get(i).getU_type();
+            Date regtime = userList.get(i).getRegisttime();
+            String s_uid = String.valueOf(uid);
+            String reg = String.valueOf(regtime);
+            String s_brithday = String.valueOf(brithday);
+            String s_u_type = String.valueOf(u_type);
+            //获取并封装users
+            String arr[] = {uame, password, s_brithday, phone, email, s_u_type, reg};
+            sb.append("\"" + s_uid + "\":");
+            sb.append("[");
+            //初始化预读取列表长度
+            int n = 0;
+            for (String s : arr) {
+                n += 1;
+                sb.append("\"" + s + "\"");
+                //n的比较值为arr的长度
+                if (n < arr.length) {
+                    sb.append(",");
+                }
+            }
+            if (i < userList.size() - 1) {
+                //设置json字符串结尾
+                sb.append("]}" + ",");
+            } else {
+                //设置json数组字符串结尾
+                sb.append("}]}");
+            }
+
+
+
+        }
+        return sb.toString();
     }
 }
