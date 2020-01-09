@@ -725,7 +725,7 @@ public class NewsDaoImpl implements NewsDao {
     }
     //更具新闻标题返回新闻
     @Override
-    public List<News> Find_newsbyheadlines(String headlines) {
+    public List<News> Find_NewsByHeadLines(String headlines) {
         //声明新闻列表
         List<News> newslist = new ArrayList<News>();
         //获取数据库连接对象

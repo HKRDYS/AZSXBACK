@@ -22,7 +22,6 @@ public interface NewsDao {
     //根据类型显示新闻
     List<News>  FindNews_ByType(String type);
 
-
     //根据阅读量筛选新闻
     List<News>  FindNews_ByCount(int max_count, int min_count);
 
@@ -60,7 +59,6 @@ public interface NewsDao {
     //根据新闻ID更新新闻
     int UpdataNews_ById(int id, String headlnes, String type, Timestamp newstime, String maker, int n_count, String details, int uid);
 
-
     //根据新闻标题显示新闻
-    List<News> Find_newsbyheadlines(String headlines);
+    List<News>Find_NewsByHeadLines(String headlines);
 }

@@ -28,9 +28,6 @@ public class FindAllUserServlet extends HttpServlet {
             pwd = request.getParameter("password");
             UserDao userinfo = new UserServer();
             if(!userinfo.Login(username,pwd)){
-                System.out.println(username);
-                System.out.println(pwd);
-                System.out.println(userinfo.Login(username,pwd));
                 response.sendError(401,"登录失败！");
                 return;
             }

@@ -1,6 +1,7 @@
 package Servlet;
 
 import DB.Bean.News;
+import DB.Dao.DaoImpl.NewsDaoImpl;
 import DB.Dao.NewsDao;
 import DB.server.NewsServer;
 
@@ -64,7 +65,8 @@ public class News_FindServlet extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.print(re_news);
                 //显示所有新闻类型
-            }else if(re.equals("type")){
+            }
+            else if(re.equals("type")){
                 NewsDao newsDao = new NewsServer();
                 String[] arr = newsDao.Find_All_Type();
                 StringBuffer sb = new StringBuffer();
@@ -83,6 +85,26 @@ public class News_FindServlet extends HttpServlet {
                 }
                 PrintWriter out = response.getWriter();
                 out.print(sb);
+            }
+            else if(re.equals("byname")){
+                NewsDao newsDao = new NewsDaoImpl();
+                String name = "";
+                try {
+                    name = request.getParameter("name");
+                }catch (NullPointerException e){
+                    response.sendError(400, "预期之外的请求类型!请检查请求值，name =?" );
+                    e.printStackTrace();
+                }
+                if(name.equals("")){
+                    response.sendError(400, "预期之外的请求类型!请检查请求值，name =?" );
+                    return;
+                }
+                List<News> lsNews = newsDao.Find_NewsByHeadLines(name);
+                //将数组集转换为json数组并输出
+                String re_news = Print_Helper(lsNews);
+                PrintWriter out = response.getWriter();
+                out.print(re_news);
+
             }
 
             //请求值为预期之外

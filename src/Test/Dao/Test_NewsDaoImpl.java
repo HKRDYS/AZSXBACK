@@ -207,7 +207,7 @@ public class Test_NewsDaoImpl {
     @Test
     public void Test_Find_newsbyheadlines(){
         NewsDao t16= new NewsDaoImpl();
-        List<News> L16=t16.Find_newsbyheadlines("测试新闻07");
+        List<News> L16=t16.Find_NewsByHeadLines("测试新闻07");
         News_Print(L16);
     }
 
