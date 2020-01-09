@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 参数需要: username，password
  *权限不足抛出401异常
- *返回:json字符串数组
+ *返回:json字符串数组{"userinfo":[{"uid":["username","password","birthday","phonenumber,email,u_type,registr_date"]}]}
  */
 @WebServlet(name = "FindAllUserServlet" ,value = "/AllUser")
 public class FindAllUserServlet extends HttpServlet {
