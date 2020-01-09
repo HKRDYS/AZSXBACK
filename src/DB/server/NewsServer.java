@@ -68,7 +68,8 @@ public class NewsServer extends NewsDaoImpl {
     }
 
     @Override
-    public News FindNews_ById(int id) {
+    public News
+    FindNews_ById(int id) {
         return super.FindNews_ById(id);
     }
 

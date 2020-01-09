@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class Test_UserDaoImpl {
+
     //测试用户注册页
     @Test
     public void Test_Regist(){
@@ -94,6 +95,7 @@ public class Test_UserDaoImpl {
         int L7=t7.Del_User_ByUid(8);
         System.out.println(L7);
     }
+
     //测试用户修改密码
     @Test
     public void Test_User_Updata_password(){
@@ -101,6 +103,7 @@ public class Test_UserDaoImpl {
         int L8=t8.User_Updata_password("11111","22222");
         System.out.println(L8);
     }
+
     //测试根据用户名查询用户资料
     @Test
     public void Test_Find_Userinfo_ByUname(){
@@ -108,12 +111,14 @@ public class Test_UserDaoImpl {
         User L9=t9.Find_Userinfo_ByUname("11111");
         System.out.println(L9.getBirthday()+"    "+L9.getEmail()+"     其他的就不看了");
     }
+
     //通过用户uid修改用户状态
     @Test
     public void Test_UpdateUtype_ByUUid(){
         UserDao t9=new UserDaoImpl();
         int L10=t9.UpdateUtype_ByUUid(9,2);
-        System.out.println(L10);//0:普通用户，1:封禁状态，2：管理员
+        System.out.println(L10);
+        //0:普通用户，1:封禁状态，2：管理员
     }
     //测试显示所有用户
     @Test
@@ -131,8 +136,5 @@ public class Test_UserDaoImpl {
         String L11=t11.Find_Username_ByPhone("111112");
         System.out.println(L11);
     }
-
-
-
 
 }

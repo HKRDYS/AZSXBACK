@@ -68,7 +68,6 @@ public class RegisterServlet extends HttpServlet {
                 out.print("{\"register\":\"2\"}");
             }
 
-
         }
     }
 
