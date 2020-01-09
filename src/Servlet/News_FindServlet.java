@@ -26,7 +26,7 @@ public class News_FindServlet extends HttpServlet {
      * 需要参数:find = ?
      * Find 可以为: all , bytype
      * 返回:json字符串
-     * 格式{"key":[key1:value1,key2:value2...key8:value8]}
+     * 格式{"key":[key1:value1,key2:value2 ... key8:value8]}
      * */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");

@@ -214,8 +214,7 @@ public class NewsDaoImpl implements NewsDao {
 
             ResultSet rs = psmt.executeQuery();
 
-            // 遍历结果集
-
+            // 遍历并转换结果集
             newslist = SetNews_Helper(rs);
 
             // 关闭结果集
@@ -270,7 +269,7 @@ public class NewsDaoImpl implements NewsDao {
             ResultSet rs = stmt.executeQuery(strSQL);
 
 
-            // 遍历结果集
+            // 遍历并转换结果集
             newslist = SetNews_Helper(rs);
 
             // 关闭结果集
@@ -321,7 +320,7 @@ public class NewsDaoImpl implements NewsDao {
             ResultSet rs = stmt.executeQuery(strSQL);
 
 
-            // 遍历结果集
+            // 遍历并转换结果集
             newslist = SetNews_Helper(rs);
 
             // 关闭结果集
@@ -533,7 +532,12 @@ public class NewsDaoImpl implements NewsDao {
             }
         }
     }
-
+    /**
+     *功能:返回所有的新闻种类
+     * @param newshead 新闻标题
+     * @param uid 用户uid
+     * @return err_id
+     * */
     @Override
     public int[] FindNewsId_ByNewsNameUID(String newshead, int uid) {
         //创建返回ID
@@ -581,6 +585,11 @@ public class NewsDaoImpl implements NewsDao {
 
     }
 
+    /**
+     * 功能：通过新闻id返回作者uid
+     * @param  id 新闻id
+     * @return  uid
+     * */
     @Override
     public int FindNewsUid_ByNewsId(int id) {
         //初始化返回值
@@ -611,6 +620,11 @@ public class NewsDaoImpl implements NewsDao {
 
     }
 
+    /**
+     * 功能:通过新闻ID获取新闻
+     * @param id 新闻id
+     * @return news News对象
+     * */
     @Override
     public News FindNews_ById(int id) {
         //声明News对象
@@ -645,6 +659,11 @@ public class NewsDaoImpl implements NewsDao {
         return news;
     }
 
+    /**
+     * 功能：通过uid发现该作者的所有新闻
+     * @param uid 作者uid
+     * @return news 新闻对象集合 List<news>
+     * */
     @Override
     public List<News> FindNews_ByUid(int uid) {
         //声明新闻列表
@@ -723,10 +742,15 @@ public class NewsDaoImpl implements NewsDao {
         }
         return count;
     }
-    //更具新闻标题返回新闻
+
+    /**
+     * 功能:根据新闻标题返回新闻
+     * @param headlines 新闻标题
+     * @return 新闻集合 List<News>
+     */
     @Override
     public List<News> Find_NewsByHeadLines(String headlines) {
-        //声明新闻列表
+        //声明新闻集合
         List<News> newslist = new ArrayList<News>();
         //获取数据库连接对象
         Connection conn = ConnectionManager.getConnection();
@@ -782,7 +806,7 @@ public class NewsDaoImpl implements NewsDao {
     }
     /**
      * 新闻属性设置封装类
-     * @param rs
+     * @param rs 数据库返回集
      * @return newslist
      * */
     private List<News>  SetNews_Helper (ResultSet rs){
