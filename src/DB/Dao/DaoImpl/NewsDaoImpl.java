@@ -723,7 +723,59 @@ public class NewsDaoImpl implements NewsDao {
         }
         return count;
     }
+    //更具新闻标题返回新闻
+    @Override
+    public List<News> Find_newsbyheadlines(String headlines) {
+        //声明新闻列表
+        List<News> newslist = new ArrayList<News>();
+        //获取数据库连接对象
+        Connection conn = ConnectionManager.getConnection();
+        //定义SQL字符串
+        String strSQL = "select * from news_data where headlines = ?" ;
+        try {
 
+            // 创建预备语句对象
+
+            PreparedStatement psmt = conn.prepareStatement(strSQL);
+
+            //为占位符赋值
+            psmt.setString(1,headlines);
+
+            //返回结果集
+
+            ResultSet rs = psmt.executeQuery();
+
+            // 遍历结果集
+
+            newslist = SetNews_Helper(rs);
+
+            // 关闭结果集
+
+            rs.close();
+
+            // 关闭语句对象
+
+            psmt.close();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            // 关闭数据库连接
+
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        // 返回类别集合
+        return newslist;
+    }
 
     public int getReturn_number() {
         return return_number;

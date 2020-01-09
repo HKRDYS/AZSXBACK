@@ -203,5 +203,13 @@ public class Test_NewsDaoImpl {
         System.out.println(L15);
     }
 
+    //测试根据新闻标题显示新闻
+    @Test
+    public void Test_Find_newsbyheadlines(){
+        NewsDao t16= new NewsDaoImpl();
+        List<News> L16=t16.Find_newsbyheadlines("测试新闻07");
+        News_Print(L16);
+    }
+
 
 }
